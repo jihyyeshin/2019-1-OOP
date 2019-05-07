@@ -1,0 +1,8 @@
+C:\Users\tlsjh\OneDrive\문서\2019-1-OOP\6주차\6th_project\src\text.txt파일에서 "me"의 검색 결과는 다음과 같습니다.
+2번째 줄 25번째(index)
+9번째 줄 18번째(index)
+18번째 줄 15번째(index)
+25번째 줄 13번째(index)
+27번째 줄 27번째(index)
+36번째 줄 26번째(index)
+이상 검색결과로 총 6개의 검색이 완료되었습니다.
