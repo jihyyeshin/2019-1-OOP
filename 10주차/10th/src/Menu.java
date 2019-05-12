@@ -5,17 +5,14 @@ public class Menu {
 	public static final String MENU_TEXT = "\t\t===콘솔메뉴테스트===\n" + "파일불러오기 (O), 단어검색 (S),"
 			+ " 검색 후 결과 출력 (P), 수정 후 결과 출력(R), 프로그램 종료 (Q) ";
 	static BufferedWriter bufferedWriter;
-	
+
 	// 메뉴 인터페이스
 	public static void startConsoleMenu() {
-		
-		Editor editor =new Editor();
-		
+		Editor editor = new Editor();
 		Scanner sc = new Scanner(System.in);
-		FileInputStream in = null;
 		String findWord;// 메뉴 명령어
-		String findText = "";// 텍스트파일명
-		String find = "";// 검색할 단어
+		String resultString = "";
+
 		boolean isExitProgram = false;// 프로그램 종료 플래그
 		while (!isExitProgram) {
 			System.out.println(MENU_TEXT);
@@ -27,20 +24,18 @@ public class Menu {
 				break;
 			case "S":
 			case "s":
-				editor.searchWord();
+				resultString = editor.searchWord();
 				break;
 			case "P":
 			case "p":
-//				System.out.println("저장할 파일명을 입력하세요:");
-//				newText = sc.nextLine();
-//				if (save(resultString, newText)) {// 파일을 찾고, 파일에 출력
-//					System.out.println("파일이 정상적으로 저장되었습니다.");
-//					resultString = "";
-//				}
+				if (editor.printToFile(resultString)) {// 파일을 찾고, 파일에 출력
+					System.out.println("파일이 정상적으로 저장되었습니다.");
+				}
+				System.out.println("파일출력이 완료되었습니다.");
 				break;
-			case "R"://새로 추가 된 코드
+			case "R":// 새로 추가 된 코드
 			case "r":
-				editor.replaceWord(in, find);
+				editor.replaceWord();
 				break;
 			case "Q":
 			case "q":
@@ -51,7 +46,6 @@ public class Menu {
 				System.out.println("알 수 없는 명령입니다. 한번 더 입력해주세요");
 				break;
 			}
-
 		}
 		sc.close();
 	}
