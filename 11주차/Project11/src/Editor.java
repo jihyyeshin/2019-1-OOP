@@ -35,23 +35,22 @@ public class Editor {
 		}
 	}
 	/* 기존의 단어 검색 기능 및 검색 결과 파일로 저장 */
-	String searchWord() {
+	void searchWord() {
 		System.out.println("검색할 단어를 입력하세요:");
 		find = sc.nextLine();// 검색할 단어
 
 		resultString += findWord(in, find);
 		if (resultString.contains("번째")) {// 단어를 찾는 경우 "입출력오류"라는 문자열을 포함하지 못함
 			System.out.println("단어를 찾았습니다.");
-			return resultString;
 		} else {
 			System.out.println("단어를 찾지 못했습니다.");
-			return "단어를 찾지 못했습니다.";
+			resultString="단어를 찾지 못했습니다.";
 		}
 	}
 
 	String findWord(FileInputStream in, String find) {
 		bis = new BufferedInputStream(in);
-		String resultString = '"' + find + '"' + "의 검색 결과는 다음과 같습니다.\r\n";
+		String bufStr = '"' + find + '"' + "의 검색 결과는 다음과 같습니다.\r\n";
 		String strTemp = "";
 		byte[] readBuffer = new byte[BUFFER_SIZE];
 
@@ -69,11 +68,11 @@ public class Editor {
 			String[] oneLine = words[i].split(" ");// 한 줄에서 단어 저장
 			for (int j = 0; j < oneLine.length; j++) {
 				if (oneLine[j].indexOf(find) != -1) {// 문자를 찾은 경우
-					resultString += (i + 1) + "번째 줄 " + words[i].indexOf(find) + "번째(index)\r\n";
+					bufStr += (i + 1) + "번째 줄 " + words[i].indexOf(find) + "번째(index)\r\n";
 				}
 			}
 		}
-		return resultString;
+		return bufStr;
 	}
 
 	/* 해당 word를 검색해 원하는 word로 바꿔주는 메소드 */
@@ -84,31 +83,29 @@ public class Editor {
 		System.out.println("교체할 단어를 입력하세요:");
 		newWord = sc.nextLine();
 
-		String str = "";// 파일에 입력할 문자열
 		String buf;
 		byte[] readBuffer = new byte[BUFFER_SIZE];
 
 		try {
 			while (bis.read(readBuffer, 0, readBuffer.length) != -1) {
 				// 읽어온 버퍼의 내용을 스트링으로 저장한다.
-				str = new String(readBuffer);
+				resultString = new String(readBuffer);
 			}
 		} catch (IOException e) {
 			System.out.println("단어검색 : 입출력오류");
 			
 		}
 
-		str = str.replace(find, newWord);
+		resultString = resultString.replace(find, newWord);
 		/* 엔터를 포함하는 단어가 검색 및 수정이 가능하게 하기 위한 코드 */
 		for (int i = 1; i < find.length(); i++) {
 			buf = find.substring(0, i).concat("\r\n");
 			buf = buf.concat(find.substring(i));
-			str = str.replace(buf, newWord);
+			resultString = resultString.replace(buf, newWord);
 		}
 		// 결과 print
-		this.PrintWord(str);
-
-		if (this.printToFile(str)) {// 파일을 찾고, 파일에 출력
+		this.PrintWord(resultString);
+		if (this.printToFile()) {// 파일을 찾고, 파일에 출력
 			System.out.println("파일이 정상적으로 저장되었습니다.");
 		}
 		System.out.println("파일출력이 완료되었습니다.");
@@ -121,7 +118,7 @@ public class Editor {
 	}
 
 	/* replaceWord()한 결과를 파일로 저장 */
-	boolean printToFile(String resultString) {
+	boolean printToFile() {
 		sc = new Scanner(System.in);
 		boolean isAppend;
 

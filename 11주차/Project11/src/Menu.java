@@ -15,7 +15,7 @@ public class Menu {
 		System.out.println("실습 과제 11주차 11-1 or 11-2");
 		String buf=sc.nextLine();
 		if(buf.equals("11-1")) {//ContinueSearch
-			String resultString = "";
+			//String resultString = "";
 			ContinueSearch cs = new ContinueSearch("","","","","",null,null);
 			while (!isExitProgram) {
 				System.out.println(MENU_TEXT);
@@ -29,11 +29,11 @@ public class Menu {
 				case "S":
 				case "s":
 					//resultString = editor.searchWord();
-					resultString=cs.searchWord();
+					cs.searchWord();
 					break;
 				case "P":
 				case "p":
-					if (cs.printToFile(resultString)) {// 파일을 찾고, 파일에 출력
+					if (cs.printToFile()) {// 파일을 찾고, 파일에 출력
 						System.out.println("파일이 정상적으로 저장되었습니다.");
 					}
 					System.out.println("파일출력이 완료되었습니다.");
