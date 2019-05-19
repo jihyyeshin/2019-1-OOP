@@ -39,12 +39,11 @@ public class ContinueSearch extends Editor{
 					this.resultString+=bufStr;
 				} else {
 					System.out.println("단어를 찾지 못했습니다.");
-					this.resultString+=("\""+find+"\" 단어를 찾지 못했습니다.");
+					this.resultString+=("\""+find+"\" 단어를 찾지 못했습니다.\r\n");
 				}
 				System.out.print("계속 검색하시겠습니까?(true/false)>>");
 				tf=sc.nextBoolean();
 				//초기화
-				System.out.println(bufStr);
 				bufStr="";
 			}
 		} catch (IOException e) {

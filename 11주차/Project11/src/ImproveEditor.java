@@ -14,7 +14,7 @@ public class ImproveEditor extends Editor {
 		bufStr="";
 	}
 
-	/* 해당 라인에 str을 Append해 저장 */
+	/* 2-1: 해당 라인에 str을 Append해 저장 */
 	void appen(String str, int line) {
 		bis = new BufferedInputStream(in);
 		String strTemp = "";
@@ -34,7 +34,7 @@ public class ImproveEditor extends Editor {
 			this.resultString = "단어검색: 입출력오류";
 		}
 	}
-	/* 해당 라인에서만 검색 */
+	/* 2-2: 해당 라인에서만 검색 */
 	void searchWord(String word, int[] line) {
 		bis = new BufferedInputStream(in);
 		bufStr = '"' + word + '"' + "의 검색 결과는 다음과 같습니다.\r\n";

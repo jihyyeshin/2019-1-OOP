@@ -61,7 +61,7 @@ public class Editor {
 			}
 		} catch (IOException e) {
 			System.out.println("단어검색 : 입출력오류");
-			return "단어검색: 입출력오류";
+			return "단어검색: 입출력오류\r\n";
 		}
 		String[] words = strTemp.split("\n");
 		for (int i = 0; i < words.length; i++) {
