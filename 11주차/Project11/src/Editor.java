@@ -40,7 +40,7 @@ public class Editor {
 		find = sc.nextLine();// 검색할 단어
 
 		resultString += findWord(in, find);
-		if (resultString.contains("번째")) {// 단어를 찾는 경우 "입출력오류"라는 문자열을 포함하지 못함
+		if (resultString.contains("번째")) {// 단어를 찾는 경우 "번쨰"
 			System.out.println("단어를 찾았습니다.");
 		} else {
 			System.out.println("단어를 찾지 못했습니다.");
@@ -153,7 +153,6 @@ public class Editor {
 		} catch (IOException e) {
 			System.out.println("파일 입력 오류");
 		}
-
 		return true;
 	}
 }

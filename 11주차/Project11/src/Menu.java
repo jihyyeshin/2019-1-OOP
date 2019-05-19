@@ -8,14 +8,12 @@ public class Menu {
 
 	// 메뉴 인터페이스
 	public static void startConsoleMenu() {
-		//Editor editor = new Editor();
 		Scanner sc = new Scanner(System.in);
 		String findWord;// 메뉴 명령어	
 		boolean isExitProgram = false;// 프로그램 종료 플래그
 		System.out.println("실습 과제 11주차 11-1 or 11-2");
 		String buf=sc.nextLine();
 		if(buf.equals("11-1")) {//ContinueSearch
-			//String resultString = "";
 			ContinueSearch cs = new ContinueSearch("","","","","",null,null);
 			while (!isExitProgram) {
 				System.out.println(MENU_TEXT);
@@ -23,12 +21,10 @@ public class Menu {
 				switch (findWord) {
 				case "O":
 				case "o":
-					//editor.getFile();
 					cs.getFile();
 					break;
 				case "S":
 				case "s":
-					//resultString = editor.searchWord();
 					cs.searchWord();
 					break;
 				case "P":
@@ -63,22 +59,20 @@ public class Menu {
 				switch (findWord) {
 				case "O":
 				case "o":
-					//editor.getFile();
 					ie.getFile();
 					break;
 				case "S":
 				case "s":
-					//resultString = editor.searchWord();
-					//resultString=ie.searchWord();
 					System.out.println("검색할 단어를 입력하세요:");
 					String find = sc.nextLine();// 검색할 단어
-					System.out.println("검색할 라인의 수를 입력하세요:");
+					System.out.println("검색할 라인의 개수를 입력하세요:");
 					int count=sc.nextInt();
 					System.out.println("검색할 라인을 입력하세요:");
 					int[] line=new int[count];
 					for(int i=0;i<count;i++)
 						line[i]=sc.nextInt();
 					ie.searchWord(find, line);
+					sc.nextLine();//버퍼 비우기
 					break;
 				case "P":
 				case "p":
@@ -98,11 +92,13 @@ public class Menu {
 					break;
 				case "A":
 				case "a":
-					System.out.println("Append할 문자를 입력하세요.");
+					System.out.println("Append할 문자를 입력하세요:");
 					String bufStr=sc.nextLine();
-					System.out.println("입력할 라인을 선택하세요.");
+					System.out.println("입력할 라인을 선택하세요:");
 					int bufLine=sc.nextInt();
 					ie.appen(bufStr, bufLine);
+					sc.nextLine();//버퍼 비우기
+					break;
 				default:
 					System.out.println("알 수 없는 명령입니다. 한번 더 입력해주세요");
 					break;
