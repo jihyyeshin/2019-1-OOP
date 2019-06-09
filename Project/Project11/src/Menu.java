@@ -96,7 +96,9 @@ public class Menu {
 					String bufStr=sc.nextLine();
 					System.out.println("입력할 라인을 선택하세요:");
 					int bufLine=sc.nextInt();
-					ie.appen(bufStr, bufLine);
+					System.out.println("입력할 row를 선택하세요:");
+					int bufRow=sc.nextInt();
+					ie.appen(bufStr, bufLine, bufRow);
 					sc.nextLine();//버퍼 비우기
 					break;
 				default:

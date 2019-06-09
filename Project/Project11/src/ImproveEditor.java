@@ -15,7 +15,7 @@ public class ImproveEditor extends Editor {
 	}
 
 	/* 2-1: 해당 라인에 str을 Append해 저장 */
-	void appen(String str, int line) {
+	void appen(String str, int col, int row) {
 		bis = new BufferedInputStream(in);
 		String strTemp = "";
 		byte[] readBuffer = new byte[BUFFER_SIZE];
@@ -25,13 +25,18 @@ public class ImproveEditor extends Editor {
 				strTemp = new String(readBuffer);
 			}
 			String[] words = strTemp.split("\n");//\n를 기준으로 텍스트 파일을 자름
-			words[line]+=str;//해당 라인에 새로운 문자열을 붙인다.
-			
+			String[] oneLines=words[col].split(" ");//공백을 기준으로 한 줄을 자름
+			oneLines[row]+=str;
+			words[col]="";
+			for(int i=0;i<oneLines.length;i++)
+				words[col]+=oneLines[i];
 			for(int i=0;i<words.length;i++)
 				this.resultString+=(words[i]+"\r\n");
 		} catch (IOException e) {
 			System.out.println("단어검색 : 입출력오류");
 			this.resultString = "단어검색: 입출력오류";
+		} catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("해당 행, 열이 없습니다.");
 		}
 	}
 	/* 2-2: 해당 라인에서만 검색 */
